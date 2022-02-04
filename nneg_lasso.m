@@ -39,13 +39,13 @@ for ii = 1:iter
         for j = 1:Ny
             if ii ==1
                 y_sp = reshape(y(i,j,:),[Nz,1]);
-                rhs = [y_sp; sqrt(a)*reshape(ctilde(Nx,Ny,:),[k,1])];
+                rhs = [y_sp; sqrt(a)*reshape(ctilde(i,j,:),[k,1])];
                 c_single_pixel = lasso(S_tilde,rhs,'lambda',lambda,...
                     'MaxIter',1e5, 'Alpha', 1);
                 C(i,j,:) = reshape(c_single_pixel,[1,1,k]);
             elseif min(C_old(i,j,:))<0
                 y_sp = reshape(y(i,j,:),[Nz,1]);
-                rhs = [y_sp; sqrt(a)*reshape(ctilde(Nx,Ny,:),[k,1])];
+                rhs = [y_sp; sqrt(a)*reshape(ctilde(i,j,:),[k,1])];
                 c_single_pixel = lasso(S_tilde,rhs,'lambda',lambda,...
                     'MaxIter',1e5, 'Alpha', 1);
                 C(i,j,:) = reshape(c_single_pixel,[1,1,k]);
